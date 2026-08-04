@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#01030a">
+  <meta name="description" content="A través del mismo cielo — Director's Cut v2">
+  <title>A través del mismo cielo</title>
+
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/universe.css">
+  <link rel="stylesheet" href="styles/scenes.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="stylesheet" href="styles/animations.css">
+  <link rel="stylesheet" href="styles/responsive.css">
+</head>
+<body>
+  <noscript><div class="noscript">Esta experiencia necesita JavaScript.</div></noscript>
+
+  <div class="cinema-bars" aria-hidden="true">
+    <span></span><span></span>
+  </div>
+
+  <div class="boot-curtain" id="bootCurtain" aria-hidden="true">
+    <div class="boot-curtain__glow"></div>
+  </div>
+
+  <div class="film-grain" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
+
+  <div class="universe" id="universe" aria-hidden="true">
+    <div class="universe__void"></div>
+    <canvas class="galaxy-canvas" id="galaxyCanvas"></canvas>
+    <div class="light-thread" aria-hidden="true"><span></span></div>
+    <div class="camera-rig" id="cameraRig">
+      <div class="nebula nebula--back" id="nebulaBack"></div>
+      <canvas id="starCanvasFar" class="star-canvas star-canvas--far"></canvas>
+      <div class="nebula nebula--mid" id="nebulaMid"></div>
+      <canvas id="starCanvasMid" class="star-canvas star-canvas--mid"></canvas>
+      <div class="aurora" id="aurora"></div>
+      <canvas id="starCanvasNear" class="star-canvas star-canvas--near"></canvas>
+      <div class="constellation-layer" id="constellationLayer"></div>
+      <div class="meteor-layer" id="meteorLayer"></div>
+      <div class="dust-layer" id="dustLayer"></div>
+    </div>
+  </div>
+
+  <button class="moon" id="moon" type="button" aria-label="Abrir mensaje secreto">
+    <span class="moon__halo"></span>
+    <span class="moon__sphere">
+      <i></i><i></i><i></i>
+    </span>
+  </button>
+
+  <button class="audio-orb" id="audioOrb" type="button" aria-label="Reproducir música">
+    <span class="audio-orb__rings"></span>
+    <span class="audio-orb__bars"><i></i><i></i><i></i></span>
+    <span class="audio-orb__label" id="audioLabel">Música</span>
+  </button>
+
+  <div class="system-notification" id="systemNotification" role="status">
+    <span class="system-notification__icon">✦</span>
+    <span>
+      <strong>Tienes un regalo de tu novio</strong>
+      <small>Ahora</small>
+    </span>
+  </div>
+
+  <div class="progress-rail" id="progressRail" aria-hidden="true">
+    <span id="progressFill"></span>
+  </div>
+
+  
+  <div class="return-message" id="returnMessage" aria-live="polite"></div>
+
+  <div class="constellation-game" id="constellationGame" aria-hidden="true">
+    <button class="constellation-point constellation-point--1" data-constellation-point="c1" type="button" aria-label="Estrella 1"></button>
+    <button class="constellation-point constellation-point--2" data-constellation-point="c2" type="button" aria-label="Estrella 2"></button>
+    <button class="constellation-point constellation-point--3" data-constellation-point="c3" type="button" aria-label="Estrella 3"></button>
+    <button class="constellation-point constellation-point--4" data-constellation-point="c4" type="button" aria-label="Estrella 4"></button>
+    <svg class="constellation-game__lines" viewBox="0 0 100 100" preserveAspectRatio="none">
+      <path id="constellationPath" d="M 20 68 L 38 34 L 62 52 L 80 22" />
+    </svg>
+  </div>
+
+  <button class="hidden-star" id="hiddenStar" type="button" aria-label="Estrella escondida">✦</button>
+
+  <div class="secret-progress" id="secretProgress" aria-hidden="true">
+    <span id="secretProgressFill"></span>
+  </div>
+
+  <main class="experience" id="experience">
+    <section class="scene scene--intro" data-scene="intro">
+      <div class="intro-stage" id="introStage">
+        <p data-intro>Hay personas que llegan a tu vida...</p>
+        <p data-intro>...y sin darse cuenta...</p>
+        <p data-intro>...la iluminan por completo.</p>
+        <div class="intro-title" data-intro>
+          <span>🎂</span>
+          <h1>Feliz cumpleaños, amolcito ❤️</h1>
+          <p>Hice este universo especialmente para ti.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="scene scene--portal reveal" data-scene="portal">
+      <div class="portal-stage">
+        <div class="portal-ring">
+          <span></span><span></span><span></span>
+          <strong>✦</strong>
+        </div>
+        <h2>Entra despacito</h2>
+        <p>Todo lo que vas a ver fue pensado para ti.</p>
+      </div>
+    </section>
+
+    <section class="scene scene--counter reveal" data-scene="counter">
+      <article class="glass counter-card">
+        <span class="eyebrow">Desde que comenzó lo nuestro</span>
+        <h2>Todo este tiempo contigo</h2>
+        <div class="counter-grid">
+          <div><strong id="days">0</strong><span>Días</span></div>
+          <div><strong id="hours">00</strong><span>Horas</span></div>
+          <div><strong id="minutes">00</strong><span>Minutos</span></div>
+          <div><strong id="seconds">00</strong><span>Segundos</span></div>
+        </div>
+        <p>Y todavía quiero seguir sumando muchísimo más contigo.</p>
+      </article>
+    </section>
+
+    <section class="scene scene--cinematic reveal" data-scene="cinematic">
+      <article class="cinematic-card">
+        <span class="eyebrow">Un pequeño universo</span>
+        <h2>Quería que esto se sintiera distinto</h2>
+        <p>No como una página. Como un lugar al que pudieras volver.</p>
+      </article>
+    </section>
+
+    <div id="galleryScenes"></div>
+
+
+    <section class="scene scene--cake reveal" data-scene="cake">
+      <article class="cake-stage glass">
+        <span class="eyebrow">Antes de la carta</span>
+        <h2 id="cakeTitle">Pide un deseo, amolcito</h2>
+        <p id="cakeSubtitle">Toca las velitas para apagarlas.</p>
+
+        <div class="birthday-cake" id="birthdayCake" aria-label="Pastel de cumpleaños">
+          <div class="cake-candles" id="cakeCandles">
+            <button class="candle" type="button" aria-label="Apagar vela 1"><span></span><i></i></button>
+            <button class="candle" type="button" aria-label="Apagar vela 2"><span></span><i></i></button>
+            <button class="candle" type="button" aria-label="Apagar vela 3"><span></span><i></i></button>
+            <button class="candle" type="button" aria-label="Apagar vela 4"><span></span><i></i></button>
+            <button class="candle" type="button" aria-label="Apagar vela 5"><span></span><i></i></button>
+          </div>
+
+          <div class="cake-layer cake-layer--top"></div>
+          <div class="cake-layer cake-layer--middle"></div>
+          <div class="cake-layer cake-layer--bottom"></div>
+          <div class="cake-glow"></div>
+        </div>
+
+        <p class="cake-stage__message" id="cakeMessage"></p>
+      </article>
+    </section>
+
+    <section class="scene scene--envelope reveal" data-scene="envelope">
+      <div class="envelope-stage">
+        <button class="envelope" id="envelope" type="button" aria-label="Abrir carta">
+          <span class="envelope__back"></span>
+          <span class="envelope__paper"></span>
+          <span class="envelope__front"></span>
+          <span class="envelope__flap"></span>
+          <span class="envelope__seal">♡</span>
+        </button>
+        <p>Toca el sobre</p>
+      </div>
+    </section>
+
+    <section class="scene scene--letter reveal" data-scene="letter">
+      <article class="glass letter-card">
+        <span class="eyebrow">Una carta para ti</span>
+        <h2>Feliz cumpleaños, amolcito</h2>
+        <div id="letterBody"></div>
+        <strong>Ti quiero demasiado, amol ❤️</strong>
+      </article>
+    </section>
+
+    <section class="scene scene--ending reveal" data-scene="ending">
+      <div class="ending-stage">
+      <div class="final-moon-moment" id="finalMoonMoment" aria-hidden="true">
+        <div class="final-moon-moment__moon">
+          <span class="final-moon-moment__halo"></span>
+          <span class="final-moon-moment__sphere"></span>
+        </div>
+        <p id="finalMoonMessage">Gracias por hacer mi mundo mucho más bonito.</p>
+      </div>
+
+        <p data-ending>Gracias por existir.</p>
+        <p data-ending>Feliz cumpleaños, amolcito ❤️</p>
+        <p data-ending>Nos separan algunos kilómetros...</p>
+        <p class="ending-stage__last" data-ending>Pero nunca el mismo cielo 🌙</p>
+      </div>
+      <div class="crystal-finale" id="crystalFinale" aria-hidden="true">
+        <div class="crystal-finale__universe"><span class="crystal-finale__galaxy"></span><span class="crystal-finale__stars"></span></div>
+        <div class="crystal-finale__pendant"><span class="crystal-finale__chain"></span><span class="crystal-finale__glass"></span></div>
+        <div class="crystal-finale__box"><span class="crystal-finale__lid"></span><span class="crystal-finale__label">Para amolcito</span></div>
+        <p class="crystal-finale__message">Ojalá cada vez que mires el cielo recuerdes que, sin importar dónde estemos, seguimos bajo el mismo.</p>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal" id="photoModal" aria-hidden="true">
+    <button class="modal__backdrop" data-close-photo type="button" aria-label="Cerrar"></button>
+    <div class="modal__panel">
+      <button class="modal__close" data-close-photo type="button">×</button>
+      <img id="modalImage" alt="">
+      <p id="modalCaption"></p>
+    </div>
+  </div>
+
+  <div class="modal" id="secretModal" aria-hidden="true">
+    <button class="modal__backdrop" data-close-secret type="button" aria-label="Cerrar"></button>
+    <article class="modal__panel secret-panel glass">
+      <button class="modal__close" data-close-secret type="button">×</button>
+      <span>✦</span>
+      <div id="secretText"></div>
+    </article>
+  </div>
+
+
+  <div class="achievement" id="achievement" role="status" aria-live="polite">
+    <span class="achievement__icon" id="achievementIcon">✦</span>
+    <div>
+      <small id="achievementTitle">Descubrimiento</small>
+      <strong id="achievementText"></strong>
+    </div>
+  </div>
+
+  <audio id="music" preload="metadata" loop></audio>
+  <script type="module" src="core/main.js"></script>
+</body>
+</html>
