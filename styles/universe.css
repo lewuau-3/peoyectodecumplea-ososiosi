@@ -1,0 +1,114 @@
+.universe {
+  position: fixed; inset: 0; z-index: 0;
+  overflow: hidden; pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 120%, rgba(31,78,130,.18), transparent 50%),
+    linear-gradient(180deg, #010208 0%, #030814 55%, #01040a 100%);
+}
+.universe__void {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(circle at 50% 28%, rgba(22,53,88,.11), transparent 32rem),
+    linear-gradient(180deg, rgba(0,0,0,.15), transparent 40%, rgba(0,0,0,.25));
+}
+.camera-rig {
+  position: absolute; inset: -3%;
+  transform-origin: center;
+  will-change: transform;
+}
+.star-canvas, .constellation-layer, .meteor-layer, .dust-layer {
+  position: absolute; inset: 0;
+}
+.star-canvas--far { opacity: .65; filter: blur(.25px); }
+.star-canvas--mid { opacity: .86; }
+.star-canvas--near { opacity: 1; }
+.nebula {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: .1;
+  transition: opacity 1.4s ease, transform 1.4s ease;
+}
+.nebula--back {
+  width: 55rem; height: 55rem;
+  top: -28rem; left: -27rem;
+  background: #1d5c98;
+}
+.nebula--mid {
+  width: 50rem; height: 50rem;
+  right: -27rem; bottom: -25rem;
+  background: #394f83;
+}
+.aurora {
+  position: absolute;
+  left: 50%; bottom: -8rem;
+  width: 75vw; height: 18rem;
+  transform: translateX(-50%) rotate(-7deg);
+  opacity: .08;
+  filter: blur(28px);
+  background:
+    linear-gradient(90deg,
+      transparent,
+      rgba(66,133,199,.35),
+      rgba(126,171,218,.2),
+      transparent);
+  transition: opacity 1.3s ease, transform 1.3s ease;
+}
+.constellation {
+  position: absolute;
+  width: 8rem; height: 5rem;
+  opacity: 0;
+  transition: opacity 1.4s ease;
+}
+.constellation::before, .constellation::after {
+  content: "";
+  position: absolute;
+  height: 1px;
+  transform-origin: left center;
+  background: linear-gradient(90deg, transparent, rgba(190,220,255,.36), transparent);
+}
+.constellation::before { width: 5.4rem; top: 2rem; left: 1rem; transform: rotate(18deg); }
+.constellation::after { width: 3.8rem; top: 3.5rem; left: 4.7rem; transform: rotate(-34deg); }
+.constellation i {
+  position: absolute;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: #eff8ff;
+  box-shadow: 0 0 8px rgba(190,220,255,.72);
+}
+.meteor {
+  position: absolute;
+  width: var(--length); height: 1px;
+  opacity: 0;
+  transform: rotate(-34deg);
+  background: linear-gradient(90deg, transparent, rgba(239,248,255,.98));
+  animation: meteor 1.65s ease-out forwards;
+}
+.meteor::after {
+  content: "";
+  position: absolute; right: 0; top: -2px;
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 0 15px rgba(205,232,255,.9);
+}
+.dust {
+  position: absolute;
+  width: 3px; height: 3px;
+  border-radius: 50%;
+  background: rgba(220,240,255,.75);
+  box-shadow: 0 0 14px rgba(150,205,255,.68);
+  animation: drift var(--duration) ease-in-out infinite alternate;
+}
+body[data-mood="sleeping"] .nebula { opacity: .035; }
+body[data-mood="curious"] .nebula { opacity: .11; }
+body[data-mood="warm"] .nebula { opacity: .17; }
+body[data-mood="magical"] .nebula { opacity: .22; transform: scale(1.08); }
+body[data-mood="intimate"] .nebula { opacity: .06; transform: scale(.92); }
+body[data-mood="celebration"] .nebula { opacity: .3; transform: scale(1.18); }
+body[data-mood="celebration"] .aurora { opacity: .28; transform: translateX(-50%) rotate(-4deg) scale(1.18); }
+body[data-mood="celebration"] .constellation,
+.constellation-pulse .constellation { opacity: .58; }
+.aurora-pulse .aurora { opacity: .24; }
+
+.galaxy-canvas{position:absolute;inset:0;opacity:calc(.08 + var(--world-intensity,0)*.5);transition:opacity 1.4s ease}.light-thread{position:absolute;inset:0;opacity:.22;pointer-events:none}.light-thread span{position:absolute;left:50%;top:8%;width:1px;height:84%;transform:translateX(-50%);background:linear-gradient(180deg,transparent,rgba(180,220,255,.28) 18%,rgba(180,220,255,.08) 52%,rgba(180,220,255,.28) 82%,transparent);filter:drop-shadow(0 0 8px rgba(150,205,255,.35))}body[data-infinity-phase="birth"] .galaxy-canvas{opacity:.03}body[data-infinity-phase="journey"] .galaxy-canvas{opacity:.22}body[data-infinity-phase="memory"] .galaxy-canvas{opacity:.34}body[data-infinity-phase="celebration"] .galaxy-canvas{opacity:.58}body[data-infinity-phase="eternal"] .galaxy-canvas{opacity:.48}.eternal-mode .aurora,.eternal-aurora-pulse .aurora{opacity:.28!important;transform:translateX(-50%) rotate(-4deg) scale(1.18)!important}

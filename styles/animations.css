@@ -1,0 +1,194 @@
+@keyframes boot {
+  0%, 58% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; }
+}
+@keyframes bootGlow {
+  0% { opacity: 0; transform: scale(.5); }
+  50% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.8); }
+}
+@keyframes breathe {
+  0%,100% { opacity: .55; transform: scale(.94); }
+  50% { opacity: 1; transform: scale(1.08); }
+}
+@keyframes meteor {
+  0% { opacity: 0; transform: translate(-8rem,-5rem) rotate(-34deg); }
+  12% { opacity: 1; }
+  100% { opacity: 0; transform: translate(24rem,15rem) rotate(-34deg); }
+}
+@keyframes drift {
+  from { transform: translate(0,0); opacity: .15; }
+  to { transform: translate(var(--x),var(--y)); opacity: .65; }
+}
+@keyframes notification {
+  0% { opacity: 0; transform: translate(-50%,-140%); }
+  15%,75% { opacity: 1; transform: translate(-50%,0); }
+  100% { opacity: 0; transform: translate(-50%,-140%); }
+}
+@keyframes bars {
+  from { height: 28%; }
+  to { height: 100%; }
+}
+@keyframes introLine {
+  0% { opacity: 0; transform: translateY(1rem); filter: blur(7px); }
+  18%,72% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  100% { opacity: 0; transform: translateY(-.7rem); filter: blur(5px); }
+}
+@keyframes portalSpin { to { transform: rotate(360deg); } }
+@keyframes kenBurns {
+  from { transform: scale(1.02); }
+  to { transform: scale(1.09) translateY(-1%); }
+}
+@keyframes endingLine {
+  0% { opacity: 0; transform: translateY(1rem); filter: blur(5px); }
+  18%,72% { opacity: 1; transform: translateY(0); filter: blur(0); }
+  100% { opacity: 0; transform: translateY(-.8rem); filter: blur(4px); }
+}
+@keyframes endingStay {
+  from { opacity: 0; transform: translateY(1rem) scale(.98); filter: blur(5px); }
+  to { opacity: 1; transform: translateY(0) scale(1); filter: blur(0); }
+}
+
+
+/* DIRECTOR'S CUT V3 */
+@keyframes albumDust {
+  to { background-position: 8rem -8rem, -10rem 10rem, 6rem 6rem; }
+}
+@keyframes photoShine {
+  0% { opacity: 0; transform: translateX(-130%) skewX(-18deg); }
+  35% { opacity: 1; }
+  100% { opacity: 0; transform: translateX(130%) skewX(-18deg); }
+}
+@keyframes orbitRotate {
+  to { transform: rotate(360deg); }
+}
+@keyframes constellationPhotoStar {
+  0%,100% { opacity: .45; transform: scale(.85); }
+  50% { opacity: 1; transform: scale(1.18); }
+}
+
+
+@keyframes hiddenStarPulse {
+  0%,100% { opacity: .38; transform: scale(.92); }
+  50% { opacity: .9; transform: scale(1.08); }
+}
+@keyframes v4Particle {
+  0% { opacity: 0; transform: translate(-50%,-50%) scale(.4) rotate(0); }
+  20% { opacity: 1; }
+  100% { opacity: 0; transform: translate(calc(-50% + var(--x)),calc(-50% + var(--y))) scale(1.2) rotate(var(--r)); }
+}
+.v4-particle {
+  position: fixed;
+  z-index: 230;
+  pointer-events: none;
+  color: #e5f4ff;
+  text-shadow: 0 0 14px rgba(165,215,255,.9);
+  animation: v4Particle 1.2s ease-out forwards;
+}
+@keyframes fingerTrail {
+  from { opacity: .9; transform: translate(-50%,-50%) scale(.7); }
+  to { opacity: 0; transform: translate(-50%,-50%) scale(2.2); }
+}
+.finger-trail {
+  position: fixed;
+  z-index: 120;
+  width: .35rem;
+  height: .35rem;
+  border-radius: 50%;
+  pointer-events: none;
+  background: rgba(225,243,255,.85);
+  box-shadow: 0 0 14px rgba(165,215,255,.9);
+  animation: fingerTrail .65s ease-out forwards;
+}
+
+
+@keyframes flame {
+  from { transform: translateX(-50%) scale(.92) rotate(-2deg); }
+  to { transform: translateX(-50%) scale(1.08) rotate(2deg); }
+}
+@keyframes smoke {
+  0% { opacity: .5; transform: translateX(-50%) translateY(0) scale(.7); }
+  100% { opacity: 0; transform: translateX(-50%) translateY(-2.3rem) scale(1.35); }
+}
+@keyframes confettiFall {
+  0% {
+    opacity: 0;
+    transform: translate3d(0,-8vh,0) rotate(0);
+  }
+  10% { opacity: 1; }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift),var(--fall),0) rotate(var(--rotate));
+  }
+}
+.celebration-confetti {
+  position: fixed;
+  z-index: 225;
+  top: -2rem;
+  width: .42rem;
+  height: .8rem;
+  border-radius: .18rem;
+  pointer-events: none;
+  background: linear-gradient(180deg,#edf7ff,#7ea9d1);
+  box-shadow: 0 0 8px rgba(170,215,255,.45);
+  animation: confettiFall var(--duration) ease-in var(--delay) forwards;
+}
+@keyframes finalMoonMoment {
+  0% { opacity: 0; }
+  12% { opacity: 1; }
+  58% { opacity: 1; }
+  100% { opacity: 0; }
+}
+.final-moon-moment.is-visible .final-moon-moment__moon {
+  animation: moonApproach 8.5s ease forwards;
+}
+.final-moon-moment.is-visible p {
+  animation: moonMessage 8.5s ease forwards;
+}
+@keyframes moonApproach {
+  0% { transform: scale(.2); opacity: 0; }
+  18% { opacity: 1; }
+  52% { transform: scale(1); opacity: 1; }
+  80% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(.32); opacity: 0; }
+}
+@keyframes moonMessage {
+  0%, 38% { opacity: 0; transform: translateY(1rem); }
+  50%, 76% { opacity: 1; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(-.8rem); }
+}
+
+@keyframes crystalFinaleReveal{0%{opacity:0}8%,100%{opacity:1}}@keyframes universeIntoCrystal{0%{opacity:0;transform:scale(3)}12%{opacity:1}42%{opacity:1;transform:scale(.72)}62%,100%{opacity:0;transform:scale(.72)}}@keyframes pendantReveal{0%,35%{opacity:0;transform:scale(.55)}48%,76%{opacity:1;transform:scale(1)}100%{opacity:.8;transform:scale(.88) translateY(-5rem)}}@keyframes giftBoxReveal{0%,55%{opacity:0;transform:translateY(3rem) scale(.9)}68%,100%{opacity:1;transform:translateY(0) scale(1)}}@keyframes infinityMessage{0%,70%{opacity:0;transform:translateY(1rem)}80%,100%{opacity:1;transform:translateY(0)}}@keyframes crystalGalaxySpin{to{transform:rotate(360deg)}}
+
+
+@keyframes pendantStarsPulse {
+  from { opacity: .55; transform: scale(.98); }
+  to { opacity: 1; transform: scale(1.025); }
+}
+
+/* La galaxia inicial se comprime hacia el colgante y no desaparece demasiado pronto */
+@keyframes universeIntoCrystal {
+  0% { opacity: 0; transform: scale(3); }
+  10% { opacity: 1; }
+  38% { opacity: 1; transform: scale(.63); }
+  54% { opacity: .28; transform: scale(.58); }
+  100% { opacity: 0; transform: scale(.54); }
+}
+
+/* Mantiene el collar claramente visible durante el resto del final */
+@keyframes pendantReveal {
+  0%,30% { opacity:0; transform:scale(.48) translateY(1rem); }
+  43% { opacity:1; transform:scale(1.04) translateY(0); }
+  54%,82% { opacity:1; transform:scale(1) translateY(-3.5rem); }
+  100% { opacity:1; transform:scale(.9) translateY(-5.8rem); }
+}
+
+@keyframes giftBoxReveal {
+  0%,58% { opacity:0; transform:translateY(3rem) scale(.9); }
+  70%,100% { opacity:1; transform:translateY(0) scale(1); }
+}
+
+@keyframes infinityMessage {
+  0%,72% { opacity:0; transform:translateY(1rem); }
+  82%,100% { opacity:1; transform:translateY(0); }
+}
